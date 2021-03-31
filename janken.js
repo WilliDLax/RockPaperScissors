@@ -10,47 +10,53 @@ function computerPlay(){
     let choice = options[Math.floor(Math.random() * options.length)];
     return choice;
 }
-console.log(computerPlay());
-
-//get the user's input and save it
-const userPlay = prompt("rock, paper or scissors: ").toLowerCase();
-console.log(userPlay);
+//console.log(computerPlay());
 
 //make a function to compare the two values
 function playRound(computer, player){
-    if (computer === player){
-        return "It's a tie!"
-    }else if(computer === "rock"){
-        switch(player){
-            case "paper":
-                return "You win! Paper beats rock.";
-                break;
-            case "scissors":
-                return "You lose! rock beats scissors.";
-                break;
-            default: return "Oh no! error"
-        }
-    }else if(computer === "paper"){
-        switch(player){
-            case "scissors":
-                return "You win! scissors beats paper.";
-                break;
-            case "rock":
-                return "You lose! paper beats rock.";
-                break;
-            default: return "Oh no! error"
-        }
-    }else{
-        switch(player){
-            case "rock":
-                return "You win! rock beats scissors.";
-                break;
-            case "paper":
-                return "You lose! scissors beats paper.";
-                break;
-            default: return "Oh no! error"
-        }
+    switch(computer){
+        case "rock":
+            if (player == "rock") return "tie";
+            else if(player == "paper") return "win";
+            else return "loss";
+        break;
+        case "paper":
+            if (player == "rock") return "loss";
+            else if(player == "paper") return "tie";
+            else return "win";
+        break;
+        default:
+            if (player == "rock") return "win";
+            else if(player == "paper") return "loss";
+            else return "tie";
     }
 }
 
-//decide the winner from the comparison)
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;
+    let counter = 0;
+    let userPlay;
+    while(counter < 3){
+        //get the user's input and save it
+        userPlay = prompt("rock, paper or scissors: ").toLowerCase();
+        console.log(userPlay);
+        //playRound(computerPlay(), userPlay);
+        if(playRound(computerPlay(), userPlay) == "win"){
+            console.log("you won!");
+            playerScore++;
+        }else if (playRound(computerPlay(), userPlay) == "loss"){
+            console.log("you lost!");
+            computerScore++;
+        }
+        else{
+            console.log("round tied");
+            counter--;
+            playerScore += 0;
+            computerScore += 0;
+        }
+        counter++;
+    }
+    console.log(playerScore);
+    console.log(computerScore);
+}
