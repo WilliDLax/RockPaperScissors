@@ -32,6 +32,9 @@ function playRound(computer, player){
     }
 }
 
+/*make a function to run the game 
+until one player reaches 3 points
+then show the score*/
 function game(){
     let playerScore = 0;
     let computerScore = 0;
